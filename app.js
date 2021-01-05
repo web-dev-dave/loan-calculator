@@ -1,5 +1,5 @@
 // Listen for submit
-document.getElementById('loan-form').addEventListener('submit', function(e){
+document.getElementById('loan-form').addEventListener('submit', (e) => {
   // Hide results
   document.getElementById('results').style.display = 'none'
 
@@ -12,8 +12,7 @@ document.getElementById('loan-form').addEventListener('submit', function(e){
 })
 
 // Calculate results function
-function calculateResults(){
-  console.log('Calculating....')
+calculateResults = () => {
 
   // UI Vars
   const amount = document.getElementById('amount')
@@ -25,11 +24,9 @@ function calculateResults(){
 
   // Return a floating point number (decimal place values)
   const principal = parseFloat(amount.value)
-  console.log(principal)
   const calculatedInterest = parseFloat(interest.value) / 100 / 12
-  console.log(calculatedInterest)
   const calculatedPayments = parseFloat(years.value) * 12
-  console.log(calculatedPayments)
+
 
   // Compute monthly payments
   const x = Math.pow(1 + calculatedInterest, calculatedPayments)
@@ -46,14 +43,13 @@ function calculateResults(){
     // Hide loader
     document.getElementById('loading').style.display = 'none'
   } else {
-    console.log('Please check your fields')
     showError('Please check your fields')
   }
 
 }
 
 // Show Error
-function showError(error){
+showError = (error) => {
   // Hide results
   document.getElementById('results').style.display = 'none'
 
@@ -77,10 +73,7 @@ function showError(error){
   card.insertBefore(errorDiv, heading)
 
   // Set timeout
-  setTimeout(clearError, 3000)
-}
-
-// Clear Error
-function clearError(){
-  document.querySelector('.alert').remove()
+  setTimeout(() => {
+    document.querySelector('.alert').remove()
+  }, 3000)
 }
